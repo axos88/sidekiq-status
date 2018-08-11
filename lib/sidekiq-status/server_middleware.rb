@@ -50,7 +50,7 @@ module Sidekiq::Status
 
       result = yield
 
-      store_for_id worker.jid, result: result unless result.nil?
+      store_for_id worker.jid, result: result.to_json unless result.nil?
 
       store_status worker.jid, :complete, expiry
     rescue Worker::Stopped
